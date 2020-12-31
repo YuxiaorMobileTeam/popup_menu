@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:popup_menu/popup_menu.dart';
-import 'package:popup_menu_example/gesture_demo.dart';
 
 void main() => runApp(MyApp());
 
@@ -34,34 +33,39 @@ class _MyHomePageState extends State<MyHomePage> {
   void initState() {
     super.initState();
 
-    menu = PopupMenu(items: [
-      // MenuItem(title: 'Copy', image: Image.asset('assets/copy.png')),
-      // MenuItem(title: 'Home', image: Icon(Icons.home, color: Colors.white,)),
-      MenuItem(
-          title: 'Mail',
-          image: Icon(
-            Icons.mail,
-            color: Colors.white,
-          )),
-      MenuItem(
-          title: 'Power',
-          image: Icon(
-            Icons.power,
-            color: Colors.white,
-          )),
-      MenuItem(
-          title: 'Setting',
-          image: Icon(
-            Icons.settings,
-            color: Colors.white,
-          )),
-      MenuItem(
-          title: 'PopupMenu',
-          image: Icon(
-            Icons.menu,
-            color: Colors.white,
-          ))
-    ], onClickMenu: onClickMenu, onDismiss: onDismiss, maxColumn: 4);
+    menu = PopupMenu(
+      items: [
+        // MenuItem(title: 'Copy', image: Image.asset('assets/copy.png')),
+        // MenuItem(title: 'Home', image: Icon(Icons.home, color: Colors.white,)),
+        MenuItem(
+            title: 'Mail',
+            image: Icon(
+              Icons.mail,
+              color: Colors.white,
+            )),
+        MenuItem(
+            title: 'Power',
+            image: Icon(
+              Icons.power,
+              color: Colors.white,
+            )),
+        MenuItem(
+            title: 'Setting',
+            image: Icon(
+              Icons.settings,
+              color: Colors.white,
+            )),
+        MenuItem(
+            title: 'PopupMenu',
+            image: Icon(
+              Icons.menu,
+              color: Colors.white,
+            ))
+      ],
+      onClickMenu: onClickMenu,
+      onDismiss: onDismiss,
+      maxColumn: 4,
+    );
   }
 
   void stateChanged(bool isShow) {
@@ -133,17 +137,17 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void onGesturesDemo() {
     menu.dismiss();
-    return;
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => GestureDemo()),
-    );
+    // return;
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(builder: (context) => GestureDemo()),
+    // );
   }
 
   void checkState(BuildContext context) {
-    final snackBar = new SnackBar(content: new Text('这是一个SnackBar!'));
+    // final snackBar = new SnackBar(content: new Text('这是一个SnackBar!'));
 
-    Scaffold.of(context).showSnackBar(snackBar);
+    // Scaffold.of(context).showSnackBar(snackBar);
   }
 
   void maxColumn() {

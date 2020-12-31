@@ -62,15 +62,8 @@ class PopupMenu {
   /// Menu will show at above or under this rect
   Rect _showRect;
 
-  /// if false menu is show above of the widget, otherwise menu is show under the widget
-  bool _isDown = true;
-
   /// The max column count, default is 4.
   int _maxColumn;
-
-  /// if false menu always is show above of the widget, otherwise menu always is show under the widget
-  /// if null, default: auto down or above
-  final bool isDown;
 
   /// callback
   VoidCallback dismissCallback;
@@ -99,7 +92,6 @@ class PopupMenu {
       Color backgroundColor,
       Color highlightColor,
       Color lineColor,
-      this.isDown,
       PopupMenuStateChanged stateChanged,
       List<MenuItemProvider> items}) {
     this.onClickMenu = onClickMenu;
@@ -164,18 +156,11 @@ class PopupMenu {
     }
 
     double dy = _showRect.top - menuHeight();
-    if (isDown != null) {
-      _isDown = isDown;
-    } else {
-      if (dy <= MediaQuery.of(context).padding.top + 10) {
-        // The have not enough space above, show menu under the widget.
-        dy = arrowHeight + _showRect.height + _showRect.top;
-        _isDown = false;
-      } else {
-        dy -= arrowHeight;
-        _isDown = true;
-      }
-    }
+    // if (isDown ?? true) {
+    dy = arrowHeight + _showRect.height + _showRect.top;
+    // } else {
+    //   dy -= arrowHeight;
+    // }
 
     return Offset(dx, dy);
   }
@@ -214,13 +199,11 @@ class PopupMenu {
               // triangle arrow
               Positioned(
                 left: _showRect.left + _showRect.width / 2.0 - 7.5,
-                top: _isDown
-                    ? offset.dy + menuHeight()
-                    : offset.dy - arrowHeight,
+                top: offset.dy - arrowHeight,
                 child: CustomPaint(
                   size: Size(15.0, arrowHeight),
                   painter:
-                      TrianglePainter(isDown: _isDown, color: _backgroundColor),
+                      TrianglePainter(isDown: false, color: _backgroundColor),
                 ),
               ),
               // menu content
